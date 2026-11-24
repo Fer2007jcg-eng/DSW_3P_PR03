@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -76,6 +75,21 @@ builder.Services
 
 builder.Services.AddAuthorization();
 
+// Configurar CORS.
+string[] origenes = builder.Configuration
+    .GetSection("Cors:Origins")
+    .Get<string[]>() ?? Array.Empty<string>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CharacterHubFrontend", policy =>
+    {
+        policy.WithOrigins(origenes)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Swagger.
@@ -85,7 +99,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
 app.UseHttpsRedirection();
+app.UseCors("CharacterHubFrontend");
 
 app.UseAuthentication();
 
