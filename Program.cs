@@ -1,4 +1,5 @@
-
+using Microsoft.EntityFrameworkCore;
+using DSW_3P_PR03.Data;
 using DSW_3P_PR03.Repositories;
 using DSW_3P_PR03.Services;
 
@@ -11,11 +12,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Registrar repositorio JSON.
-builder.Services.AddScoped<IPersonajeRepository, PersonajeJsonRepository>();
+// Registrar repositorio SQL.
+builder.Services.AddScoped<IPersonajeRepository, PersonajeSqlRepository>();
 
 // Registrar servicio.
 builder.Services.AddScoped<IPersonajeService, PersonajeService>();
+
+// Configurar SQL Server.
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("SqlServerConnection")
+    )
+);
 
 var app = builder.Build();
 
