@@ -8,7 +8,7 @@ namespace DSW_3P_PR03.Controllers;
 
 [ApiController]
 [Route("api/personajes")]
-//[Authorize]
+[Authorize]
 public class PersonajesController : ControllerBase
 {
     private readonly IPersonajeService _service;
