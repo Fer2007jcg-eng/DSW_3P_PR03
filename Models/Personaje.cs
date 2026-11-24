@@ -8,6 +8,6 @@ public class Personaje
     public string Clase { get; set; } = "";
     public int Nivel { get; set; }
     public int Poder { get; set; }
-    public bool Disponible { get; set; }
+    public bool Disponible { get; set; } = true;
     public string ImagenUrl { get; set; } = "";
 }
