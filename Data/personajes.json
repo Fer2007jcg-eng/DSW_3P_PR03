@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "Id": 1,
+    "Nombre": "Kratos",
+    "Videojuego": "God of War",
+    "Clase": "Dios de la guerra",
+    "Nivel": 95,
+    "Poder": 100,
+    "Disponible": true,
+    "ImagenUrl": "https://upload.wikimedia.org/wikipedia/en/2/2c/Kratos_God_of_War.jpg"
+  }
+]
